@@ -475,6 +475,27 @@ export const init = () => {
     }
 
     /**
+     * Returns a rect tag with the given dimensions.
+     * @param {*} x x coordinate of the top left corner
+     * @param {*} y y coordinate of the top left corner
+     * @param {*} width width of the rectangle
+     * @param {*} height height of the rectangle
+     * @param {*} classes classes to add
+     * @param {*} id id of the rect
+     * @returns {any}
+     */
+     function rect(x, y, width, height, classes, id) {
+        let rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('class', classes);
+        rect.setAttribute('id', id);
+        rect.setAttribute('cx', x);
+        rect.setAttribute('cy', y);
+        rect.setAttribute('width', width);
+        rect.setAttribute('height', height);
+        return rect;
+    }
+
+    /**
      * Returns a path between two points.
      * @param {*} x1 x coordinate of the first point
      * @param {*} y1 y coordinate of the first point
@@ -528,7 +549,7 @@ export const init = () => {
         let cy = (event.clientY - CTM.f) / CTM.d;
         placesgroup.appendChild(
             link(
-                circle(cx, cy, 10, 'learningmap-place learningmap-draggable learningmap-emptyplace', placeId),
+                rect(cx, cy, 40, 20, 'learningmap-place learningmap-draggable learningmap-emptyplace', placeId),
                 linkId,
                 title('title' + placeId)
             )
